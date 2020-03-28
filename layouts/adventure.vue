@@ -1,0 +1,117 @@
+<template>
+  <div>
+    <navigation-bar :title="name">
+      <li>
+        <nuxt-link
+          :to="`/adventures/${adventureId}/progress`"
+          class="navigation__link"
+          >Progress Tracks</nuxt-link
+        >
+      </li>
+      <!--       <li>
+        <nuxt-link to="./characters" class="navigation__link"
+          >Characters</nuxt-link
+        >
+      </li> -->
+      <li>
+        <nuxt-link
+          :to="`/adventures/${adventureId}/moves`"
+          class="navigation__link"
+          >Moves Reference</nuxt-link
+        >
+      </li>
+    </navigation-bar>
+    <nuxt />
+    <div class="dice">
+      <dice-result ref="dice" :result="diceResult" @result="onDiceResult">
+      </dice-result>
+      <round-button class="dice__button" @click="onDice">
+        <img src="/cubes.svg" />
+      </round-button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { fireDb } from '~/plugins/firebase'
+import NavigationBar from '~/components/NavigationBar.vue'
+import RoundButton from '~/components/RoundButton.vue'
+import DiceResult from '~/components/DiceResult.vue'
+export default {
+  async middleware({ route, redirect }) {
+    const docRef = fireDb.collection('adventures').doc(route.params.adventure)
+    const docSnapshot = await docRef.get()
+    if (!docSnapshot.exists) {
+      return redirect('/404')
+    }
+  },
+  components: {
+    NavigationBar,
+    RoundButton,
+    DiceResult
+  },
+  data() {
+    return {
+      diceResult: null,
+      name: '',
+      unsubscribe: null
+    }
+  },
+  computed: {
+    adventureId() {
+      return this.$route.params.adventure
+    },
+    document() {
+      return fireDb.collection('adventures').doc(this.adventureId)
+    }
+  },
+  mounted() {
+    this.unsubscribe = this.document.onSnapshot((doc) => {
+      if (doc.exists) {
+        this.diceResult = doc.data().result
+        this.name = doc.data().name
+      }
+    })
+  },
+  beforeDestroy() {
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
+  },
+  methods: {
+    onDice() {
+      this.$refs.dice.roll()
+    },
+    onDiceResult(result) {
+      this.document.update({
+        result
+      })
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+body {
+  margin: 0;
+  background-color: #8f8f8f;
+}
+
+.dice {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.dice__button {
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+
+  img {
+    width: 60%;
+    height: 60%;
+  }
+}
+</style>

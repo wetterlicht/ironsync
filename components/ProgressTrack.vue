@@ -1,0 +1,139 @@
+<template>
+  <div class="progress-track">
+    <div class="progress-track__header">
+      <input
+        :value="description"
+        @input="$emit('descriptionChange', $event.target.value)"
+        type="text"
+        class="progress-track__description"
+      />
+      <remove-icon @click="$emit('remove')" class="progress-track__remove" />
+    </div>
+    <div class="progress-track__body">
+      <ul class="progress-track__ranks">
+        <li
+          v-for="rankValue in ranks"
+          :key="rankValue"
+          class="progress-track__rank"
+        >
+          <input
+            :id="`${id}-${rankValue}`"
+            :value="rankValue"
+            :name="`${id}-rank`"
+            :checked="rankValue === rank"
+            @change="$emit('rankChange', $event.target.value)"
+            type="radio"
+          />
+          <label :for="`${id}-${rankValue}`">{{ rankValue }}</label>
+        </li>
+      </ul>
+      <div class="progress-track__progress">
+        <progress-box
+          v-for="(boxProgress, index) in progress"
+          :key="index"
+          :progress="boxProgress"
+          @progressChange="onProgressChange($event, index)"
+          class="progress-track__box"
+        ></progress-box>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import RemoveIcon from '~/components/RemoveIcon.vue'
+import ProgressBox from '~/components/ProgressBox.vue'
+export default {
+  components: {
+    ProgressBox,
+    RemoveIcon
+  },
+  props: {
+    id: {
+      type: Number,
+      required: true
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    rank: {
+      type: String,
+      default: ''
+    },
+    progress: {
+      type: Array,
+      default: () => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  },
+  data() {
+    return {
+      ranks: ['Troublesome', 'Dangerous', 'Formidable', 'Extreme', 'Epic']
+    }
+  },
+  methods: {
+    onProgressChange(value, index) {
+      const newArray = [...this.progress]
+      newArray.splice(index, 1, value)
+      this.$emit('progressChange', newArray)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.progress-track {
+  text-align: center;
+  user-select: none;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .progress-track__header {
+    display: flex;
+    background-color: #000;
+    padding: 15px;
+    align-items: center;
+
+    .progress-track__description {
+      flex-grow: 1;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+
+    .progress-track__remove {
+      width: 10px;
+      height: 10px;
+      margin-left: 15px;
+    }
+  }
+
+  .progress-track__body {
+    padding: 5px 15px 25px 15px;
+
+    .progress-track__ranks {
+      margin: 10px;
+      padding: 0;
+      text-indent: 0;
+      list-style-type: none;
+      .progress-track__rank {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 0;
+        text-indent: 0;
+        list-style-type: none;
+      }
+    }
+
+    .progress-track__progress {
+      display: flex;
+      justify-content: center;
+
+      .progress-track__box {
+        margin: 5px;
+      }
+    }
+  }
+}
+</style>
