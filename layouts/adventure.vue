@@ -8,11 +8,11 @@
           >Progress Tracks</nuxt-link
         >
       </li>
-      <!--       <li>
+      <li>
         <nuxt-link to="./characters" class="navigation__link"
           >Characters</nuxt-link
         >
-      </li> -->
+      </li>
       <li>
         <nuxt-link
           :to="`/adventures/${adventureId}/moves`"
@@ -68,7 +68,7 @@ export default {
   mounted() {
     this.unsubscribe = this.document.onSnapshot((doc) => {
       if (doc.exists) {
-        this.diceResult = doc.data().result
+        this.diceResult = doc.data().diceResult
         this.name = doc.data().name
       }
     })
@@ -82,9 +82,9 @@ export default {
     onDice() {
       this.$refs.dice.roll()
     },
-    onDiceResult(result) {
+    onDiceResult(diceResult) {
       this.document.update({
-        result
+        diceResult
       })
     }
   }

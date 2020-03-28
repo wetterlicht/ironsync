@@ -37,14 +37,14 @@ export default {
   },
   computed: {
     document() {
-      return fireDb.collection('progress').doc(this.$route.params.adventure)
+      return fireDb.collection('adventures').doc(this.$route.params.adventure)
     }
   },
   mounted() {
     this.loaded = false
     this.unsubscribe = this.document.onSnapshot((doc) => {
       if (doc.exists) {
-        this.tracks = doc.data().tracks
+        this.tracks = doc.data().tracks || []
       }
       this.loaded = true
     })

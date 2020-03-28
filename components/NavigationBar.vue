@@ -1,13 +1,10 @@
 <template>
   <div>
     <div class="header">
-      <h1>
-        <nuxt-link to="/" class="logo">
+      <h1 class="logo">
+        <nuxt-link to="/" class="logo__link">
           Iron<span class="sync">Sync</span></nuxt-link
         >
-      </h1>
-      <h1 class="title">
-        {{ title }}
       </h1>
       <nav>
         <ul class="navigation">
@@ -39,14 +36,17 @@ export default {
 }
 
 .logo {
-  text-transform: uppercase;
-  font-weight: bold;
-  color: white;
   margin: 10px 0;
-  text-decoration: none;
 
-  .sync {
-    color: #00c8fa;
+  .logo__link {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+
+    .sync {
+      color: #00c8fa;
+    }
   }
 }
 
@@ -59,9 +59,9 @@ export default {
 
 .navigation {
   display: flex;
-  justify-content: right;
   padding: 0;
   margin: 0;
+  text-align: right;
 
   li {
     margin: 0 0 0 30px;
