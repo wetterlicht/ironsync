@@ -99,8 +99,6 @@ li {
 }
 
 .tracks {
-  margin-top: 20px auto;
-
   .track {
     color: #fff;
     background-color: #4a4a4a;

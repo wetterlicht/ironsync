@@ -12,7 +12,7 @@
     <div v-if="result.challengeDie2" :class="challengeDieValueClass">
       {{ result.challengeDie2 }}
     </div>
-    <remove-icon @click="onHide" />
+    <remove-icon class="remove-icon" @click="onHide" />
   </div>
 </template>
 
@@ -99,6 +99,10 @@ export default {
     &:last-child {
       margin-right: 0;
     }
+  }
+
+  .remove-icon {
+    margin-left: 10px;
   }
 }
 </style>

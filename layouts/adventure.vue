@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <navigation-bar :title="name">
       <li>
         <nuxt-link
@@ -21,7 +21,7 @@
         >
       </li>
     </navigation-bar>
-    <nuxt />
+    <nuxt class="content" />
     <div class="dice">
       <dice-result ref="dice" :result="diceResult" @result="onDiceResult">
       </dice-result>
@@ -29,6 +29,7 @@
         <img src="/cubes.svg" />
       </round-button>
     </div>
+    <page-footer></page-footer>
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import { fireDb } from '~/plugins/firebase'
 import NavigationBar from '~/components/NavigationBar.vue'
 import RoundButton from '~/components/RoundButton.vue'
 import DiceResult from '~/components/DiceResult.vue'
+import PageFooter from '~/components/PageFooter.vue'
 export default {
   async middleware({ route, redirect }) {
     const docRef = fireDb.collection('adventures').doc(route.params.adventure)
@@ -48,7 +50,8 @@ export default {
   components: {
     NavigationBar,
     RoundButton,
-    DiceResult
+    DiceResult,
+    PageFooter
   },
   data() {
     return {
@@ -92,9 +95,25 @@ export default {
 </script>
 
 <style lang="scss">
-body {
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+.layout {
   background-color: #8f8f8f;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  .content {
+    flex: 1;
+    margin-bottom: 100px;
+  }
 }
 
 .dice {
@@ -102,8 +121,8 @@ body {
   justify-content: right;
   align-items: center;
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 3rem;
+  right: 1rem;
 }
 
 .dice__button {
