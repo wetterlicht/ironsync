@@ -3,6 +3,9 @@ import Mode from 'frontmatter-markdown-loader/mode'
 
 export default {
   mode: 'spa',
+  generate: {
+    fallback: true
+  },
   /*
    ** Headers of the page
    */
