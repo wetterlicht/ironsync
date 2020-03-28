@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
 import D6 from '~/components/D6.vue'
 import D10 from '~/components/D10.vue'
 import RemoveIcon from '~/components/RemoveIcon.vue'
@@ -34,6 +35,7 @@ export default {
   },
   data() {
     return {
+      hiddenId: null,
       isVisible: true
     }
   },
@@ -51,12 +53,17 @@ export default {
   },
   watch: {
     result() {
-      this.isVisible = true
+      if (this.hiddenId !== this.result.id) {
+        this.isVisible = true
+      }
     }
   },
   methods: {
     roll() {
+      const id = this.generateID()
+      this.lastId = id
       this.$emit('result', {
+        id,
         actionDie: this.rollDice(1, 6),
         challengeDie1: this.rollDice(1, 10),
         challengeDie2: this.rollDice(1, 10)
@@ -65,7 +72,12 @@ export default {
     rollDice(min, max) {
       return min + Math.floor(Math.random() * (max - min + 1))
     },
+    generateID() {
+      return uuidv4()
+    },
     onHide() {
+      this.hiddenId = this.result.id
+      console.log('Hide', this.hiddenId)
       this.isVisible = false
     }
   }
