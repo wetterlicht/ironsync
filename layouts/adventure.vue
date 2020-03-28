@@ -8,11 +8,11 @@
           >Progress Tracks</nuxt-link
         >
       </li>
-      <li>
+      <!-- <li>
         <nuxt-link to="./characters" class="navigation__link"
           >Characters</nuxt-link
         >
-      </li>
+      </li> -->
       <li>
         <nuxt-link
           :to="`/adventures/${adventureId}/moves`"

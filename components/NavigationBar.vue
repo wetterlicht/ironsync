@@ -1,11 +1,16 @@
 <template>
   <div>
     <div class="header">
-      <h1 class="logo">
-        <nuxt-link to="/" class="logo__link">
-          Iron<span class="sync">Sync</span></nuxt-link
-        >
-      </h1>
+      <div class="header__left">
+        <h1 class="logo">
+          <nuxt-link to="/" class="logo__link">
+            Iron<span class="sync">Sync</span></nuxt-link
+          >
+        </h1>
+        <h1 class="title">
+          {{ title }}
+        </h1>
+      </div>
       <nav>
         <ul class="navigation">
           <slot></slot>
@@ -35,6 +40,11 @@ export default {
   align-items: center;
 }
 
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   margin: 10px 0;
 
@@ -51,9 +61,9 @@ export default {
 }
 
 .title {
+  margin-left: 2rem;
   font-weight: bold;
   color: white;
-  margin: 10px 0;
   text-decoration: none;
 }
 
