@@ -5,11 +5,13 @@
       <input
         v-model="adventureName"
         type="text"
-        placeholder="Name your adventure..."
+        placeholder="Name your tale..."
         class="name"
         required
       />
-      <button ref="createButton" class="button">Create</button>
+      <button ref="createButton" class="button">
+        I think I'm quite ready.
+      </button>
     </form>
   </div>
 </template>
@@ -43,6 +45,9 @@ export default {
 <style lang="scss" scoped>
 .call {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
