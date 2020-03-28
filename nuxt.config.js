@@ -1,18 +1,8 @@
 import path from 'path'
 import Mode from 'frontmatter-markdown-loader/mode'
 
-const routerBase =
-  process.env.DEPLOY_ENV === 'GH_PAGES'
-    ? {
-      router: {
-        base: '/ironsync/'
-      }
-    }
-    : {}
-
 export default {
   mode: 'spa',
-  ...routerBase,
   /*
    ** Headers of the page
    */
