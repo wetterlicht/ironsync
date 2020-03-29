@@ -18,6 +18,7 @@
           :to="`/adventures/${adventureId}/moves`"
           class="navigation__link"
           >Moves Reference</nuxt-link
+          >Moves</nuxt-link
         >
       </li>
     </navigation-bar>
