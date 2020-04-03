@@ -36,7 +36,6 @@
         :name="move.attributes.name"
         :component="move.vue.component"
         :is-open="selectedMove === move.attributes.name"
-        class="moves__list-item"
         @selected="onMoveClicked(move.attributes.name, move.attributes.type)"
       ></move>
     </div>
@@ -51,7 +50,7 @@ export default {
     Move
   },
   asyncData() {
-    const resolve = require.context('~/markdown/moves', true, /\.md$/)
+    const resolve = require.context('~/content/markdown/moves', true, /\.md$/)
     const moves = resolve.keys().map((key) => {
       return resolve(key)
     })
@@ -75,7 +74,6 @@ export default {
   },
   methods: {
     isMoveVisible(name, type) {
-      console.log('isMoveVisible')
       if (
         this.searchString &&
         !name.toLowerCase().startsWith(this.searchString.toLowerCase())
@@ -120,7 +118,7 @@ export default {
 
 <style lang="scss" scoped>
 .moves {
-  padding: 10px;
+  padding: 20px;
 
   .moves__header {
     display: flex;
