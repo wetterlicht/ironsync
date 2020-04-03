@@ -3,11 +3,11 @@
     <div class="progress-track__header">
       <input
         :value="description"
-        @input="$emit('descriptionChange', $event.target.value)"
         type="text"
         class="progress-track__description"
+        @input="$emit('descriptionChange', $event.target.value)"
       />
-      <remove-icon @click="$emit('remove')" class="progress-track__remove" />
+      <remove-icon class="progress-track__remove" @click="$emit('remove')" />
     </div>
     <div class="progress-track__body">
       <ul class="progress-track__ranks">
@@ -21,8 +21,8 @@
             :value="rankValue"
             :name="`${id}-rank`"
             :checked="rankValue === rank"
-            @change="$emit('rankChange', $event.target.value)"
             type="radio"
+            @change="$emit('rankChange', $event.target.value)"
           />
           <label :for="`${id}-${rankValue}`">{{ rankValue }}</label>
         </li>
@@ -32,8 +32,8 @@
           v-for="(boxProgress, index) in progress"
           :key="index"
           :progress="boxProgress"
-          @progressChange="onProgressChange($event, index)"
           class="progress-track__box"
+          @progressChange="onProgressChange($event, index)"
         ></progress-box>
       </div>
     </div>
@@ -83,6 +83,7 @@ export default {
 
 <style lang="scss" scoped>
 .progress-track {
+  color: white;
   text-align: center;
   user-select: none;
   border-radius: 4px;
@@ -111,6 +112,7 @@ export default {
 
   .progress-track__body {
     padding: 5px 15px 25px 15px;
+    background-color: #666;
 
     .progress-track__ranks {
       margin: 10px;

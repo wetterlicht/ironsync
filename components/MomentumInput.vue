@@ -1,23 +1,31 @@
 <template>
   <div class="momentum-input">
-    <div class="momentum-input__name">Momentum</div>
-    <div class="momentum-input__stepper">
-      <button :class="decrementButtonClass" @click="onDecrement">
-        -
-      </button>
-      <div class="momentum-input__stepper__value">
-        {{ formatValue(currentValue) }}
-      </div>
-      <button :class="incrementButtonClass" @click="onIncrement">
-        +
-      </button>
+    <div>
+      <div class="momentum-input__name">Momentum</div>
+      <number-input
+        :value="currentValue"
+        :min="min"
+        :max="max"
+        @input="onValueChange"
+      />
     </div>
-    <Button class="momentum-input__reset" @click="onReset">Reset</Button>
+    <div>
+      <div class="momentum-input__name">Max</div>
+      <number-input :value="max" :min="-6" :max="10" @input="onMaxChange" />
+    </div>
+    <div>
+      <div class="momentum-input__name">Reset</div>
+      <number-input :value="reset" :min="-6" :max="10" @input="onResetChange" />
+    </div>
   </div>
 </template>
 
 <script>
+import NumberInput from '~/components/NumberInput.vue'
 export default {
+  components: {
+    NumberInput
+  },
   props: {
     currentValue: {
       type: Number,
@@ -29,48 +37,24 @@ export default {
     },
     max: {
       type: Number,
-      required: true
+      default: 10
     },
     reset: {
       type: Number,
-      required: true
-    }
-  },
-  computed: {
-    incrementButtonClass() {
-      return [
-        'momentum-input__stepper__button',
-        this.currentValue === this.max &&
-          'momentum-input__stepper__button--disabled'
-      ]
-    },
-    decrementButtonClass() {
-      return [
-        'momentum-input__stepper__button',
-        this.currentValue === 0 && 'momentum-input__stepper__button--disabled'
-      ]
+      default: 2
     }
   },
   methods: {
-    onIncrement() {
-      if (this.currentValue < this.max) {
-        this.$emit('valueChange', this.currentValue + 1)
-      }
+    onValueChange(event) {
+      this.$emit('valueChange', event.target.value)
     },
-    onDecrement(value) {
-      if (this.currentValue > this.min) {
-        this.$emit('valueChange', this.currentValue - 1)
-      }
+
+    onMaxChange(event) {
+      this.$emit('maxChange', event.target.value)
     },
-    onReset() {
-      this.isOpen = false
-      this.$emit('reset')
-    },
-    formatValue(value) {
-      if (value > 0) {
-        return `+ ${value}`
-      }
-      return value
+
+    onResetChange(event) {
+      this.$emit('resetChange', event.target.value)
     }
   }
 }
@@ -78,60 +62,14 @@ export default {
 
 <style lang="scss" scoped>
 .momentum-input {
-  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  text-align: center;
 
   .momentum-input__name {
-    padding: 8px 0;
-    background-color: black;
+    padding: 0 0 4px 0;
     color: white;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .momentum-input__stepper {
-    display: flex;
-    text-align: center;
-
-    .momentum-input__stepper__button {
-      height: 40px;
-      width: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #4a4a4a;
-      color: white;
-      border: none;
-      cursor: pointer;
-
-      &.momentum-input__stepper__button--disabled {
-        background-color: #ddd;
-        color: gray;
-        cursor: default;
-      }
-    }
-
-    .momentum-input__stepper__value {
-      height: 40px;
-      width: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  .momentum-input__reset {
-    font-family: 'Times New Roman', Times, serif;
-    width: 100%;
-    height: 30px;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    color: #4a4a4a;
-    border-top: 1px solid black;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    cursor: pointer;
-    text-transform: uppercase;
   }
 }
 </style>

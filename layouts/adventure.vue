@@ -3,16 +3,18 @@
     <navigation-bar :title="name">
       <li>
         <nuxt-link
+          :to="`/adventures/${adventureId}/characters`"
+          class="navigation__link"
+          >Characters</nuxt-link
+        >
+      </li>
+      <li>
+        <nuxt-link
           :to="`/adventures/${adventureId}/progress`"
           class="navigation__link"
           >Progress Tracks</nuxt-link
         >
       </li>
-      <!-- <li>
-        <nuxt-link to="./characters" class="navigation__link"
-          >Characters</nuxt-link
-        >
-      </li> -->
       <li>
         <nuxt-link
           :to="`/adventures/${adventureId}/moves`"
@@ -21,7 +23,9 @@
         >
       </li>
     </navigation-bar>
-    <nuxt class="content" />
+    <div class="content">
+      <nuxt />
+    </div>
     <div class="dice">
       <dice-result ref="dice" :result="diceResult" @result="onDiceResult">
       </dice-result>

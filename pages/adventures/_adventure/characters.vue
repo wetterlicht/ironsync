@@ -1,11 +1,80 @@
 <template>
-  <div></div>
+  <div v-if="loaded" class="characters">
+    <character
+      v-for="(characterId, index) in characters"
+      :id="characterId"
+      :key="characterId"
+      @remove="removeCharacter($event, index)"
+    ></character>
+    <round-button class="add" @click="addCharacter">+</round-button>
+  </div>
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
+import { fireDb } from '~/plugins/firebase'
+import Character from '~/components/Character.vue'
+import RoundButton from '~/components/RoundButton.vue'
 export default {
-  layout: 'adventure'
+  layout: 'adventure',
+  components: {
+    Character,
+    RoundButton
+  },
+  data() {
+    return {
+      loaded: false,
+      unsubscribe: null,
+      characters: []
+    }
+  },
+  computed: {
+    document() {
+      return fireDb.collection('adventures').doc(this.$route.params.adventure)
+    }
+  },
+  mounted() {
+    this.loaded = false
+    this.unsubscribe = this.document.onSnapshot((doc) => {
+      if (doc.exists) {
+        this.characters = doc.data().characters || []
+      }
+      this.loaded = true
+    })
+  },
+  beforeDestroy() {
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
+  },
+  methods: {
+    addCharacter() {
+      console.log('Add Character')
+      this.document.update({
+        characters: [...this.characters, uuidv4()]
+      })
+    },
+    removeCharacter(onComplete, index) {
+      const characters = [...this.characters]
+      characters.splice(index, 1)
+      this.document
+        .update({
+          characters
+        })
+        .then(onComplete())
+        .catch((error) => console.log(error))
+    }
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.characters {
+  margin: 20px;
+  display: grid;
+  grid-gap: 2rem;
+}
+.add {
+  margin: 10px auto;
+}
+</style>

@@ -8,20 +8,17 @@ export default {}
 
 <style lang="scss" scoped>
 .button {
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   overflow: hidden;
   border: 0;
-  border-radius: 100%;
   white-space: nowrap;
   margin: 0;
-  padding: 0;
-  font-size: 36px;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  padding: 4px 8px;
+  border-radius: 4px;
   background-color: #5f5f5f;
   transition: all 0.1s ease-in-out;
   text-align: center;
