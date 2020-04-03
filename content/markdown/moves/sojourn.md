@@ -5,9 +5,11 @@ type: Relationship
 
 When **you spend time in a community seeking assistance**, roll +heart. If you share a bond, add +1.
 
-On **strong hit**, you and your allies may each choose two from within the categories below. On a **weak hit**, choose one. If you share a bond, choose one more.
+On **strong hit**, you and your allies may each choose two from within the categories below.
 
-On a hit, you and your allies may each focus on one of your chosen recover actions and roll +heart again. If you share a bond, add +1. On a strong hit, take +2 more for that action. On a weak hit, take +1 more. On a miss, it goes badly and you lose all benefits for that action.
+On a **weak hit**, choose one. If you share a bond, choose one more.
+
+On a hit, you and your allies may each focus on one of your chosen recover actions and roll +heart again. If you share a bond, add +1. On a **strong hit**, take +2 more for that action. On a **weak hit**, take +1 more. **On a miss**, it goes badly and you lose all benefits for that action.
 
 **Clear a Condition**
 

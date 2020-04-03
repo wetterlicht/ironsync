@@ -56,7 +56,7 @@ export default {
       // add frontmatter-markdown-loader
       config.module.rules.push({
         test: /\.md$/,
-        include: path.resolve(__dirname, 'markdown'),
+        include: path.resolve(__dirname, 'content/markdown'),
         loader: 'frontmatter-markdown-loader',
         options: {
           mode: [Mode.VUE_COMPONENT, Mode.META]
