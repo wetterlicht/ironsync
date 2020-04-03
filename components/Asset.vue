@@ -117,11 +117,13 @@ export default {
 <style lang="scss" scoped>
 .asset {
   width: 300px;
+  text-align: left;
 
   border-radius: 4px;
   overflow: hidden;
 
   .header {
+    text-align: center;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -129,8 +131,11 @@ export default {
     background-color: black;
   }
 
-  .before {
+  /deep/ .before {
     padding-top: 1rem;
+    .markdown {
+      margin: 1rem 0;
+    }
   }
 
   .type {

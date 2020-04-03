@@ -1,0 +1,55 @@
+{
+  "name": "Young Wyvern",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Insatiable",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Undertake a Journey* and score a hit, you may suffer -1 supply in exchange for +2 momentum."
+        }
+      ]
+    },
+    {
+      "name": "Indomitable",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you make the *Companion Endure Harm* move for your wayvern, add +2 and take +1 momentum on a hit."
+        }
+      ]
+    },
+    {
+      "name": "Savage",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* by commanding your wyvern to attack, roll +heart. You wyvern inflicts 3 harm on a hit."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 5,
+        "value": 5
+      }
+    ]
+  }
+}

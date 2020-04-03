@@ -171,7 +171,7 @@
             tabindex="0"
             @click="toggleSelectingAsset()"
           >
-            {{ selectingAsset ? 'Close' : 'Open' }} Asset Selection
+            {{ selectingAsset ? 'Close' : 'Add Assets' }}
           </button>
           <div v-if="selectingAsset">
             <div class="asset-selection__grid">
@@ -555,7 +555,6 @@ export default {
 
     .name {
       font-family: 'Times New Roman', Times, serif;
-      margin: 4px 0 0 4px;
       padding: 4px;
       border-radius: 4px;
       outline: none;
