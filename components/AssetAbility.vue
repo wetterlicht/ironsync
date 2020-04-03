@@ -55,12 +55,11 @@ export default {
       }
       this.$emit('change', ability)
     },
-    onBlockChange(event) {
-      console.log('BlockChange', event)
+    onBlockChange(block) {
       const ability = {
         name: this.name,
         active: this.active,
-        elements: event.target.value.elements
+        elements: block.elements
       }
       this.$emit('change', ability)
     }

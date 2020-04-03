@@ -1,5 +1,5 @@
 {
-  "name": "Hawk",
+  "name": "Horse",
   "type": "Companion",
   "before": {
     "elements": [
@@ -9,38 +9,38 @@
       },
       {
         "type": "text",
-        "text": "Your hawk can aid you while it is aloft."
+        "text": "You and your horse ride as one."
       }
     ]
   },
   "abilities": [
     {
-      "name": "Far-seeing",
+      "name": "Swift",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Undertake a Journey*, or when you *Resupply* by hunting for small game, add +1."
+          "text": "When you *Face Danger* +edge using your horse’s speed and grace, or when you *Undertake a Journey*, add +1."
         }
       ]
     },
     {
-      "name": "Fierce",
+      "name": "Fearless",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Secure an Advantage* +edge using your hawk to harass and distract your foes, add +1 and take +1 momentum on a hit."
+          "text": "When you *Enter the Fray* or *Secure an Advantage* +heart by charging into combat, add +1 and take +1 momentum on a hit."
         }
       ]
     },
     {
-      "name": "Vigilant",
+      "name": "Mighty",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Face Danger* +wits to detect an approaching threat, or when you *Enter the Fray* +wits against an ambush, add +2."
+          "text": "When you *Strike* or *Clash* at close range while mounted, add +1 and inflict +1 harm on a hit."
         }
       ]
     }
@@ -51,8 +51,8 @@
         "type": "number-value",
         "name": "Health",
         "min": 0,
-        "max": 3,
-        "value": 3
+        "max": 5,
+        "value": 5
       }
     ]
   }

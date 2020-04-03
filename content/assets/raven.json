@@ -1,5 +1,5 @@
 {
-  "name": "Hawk",
+  "name": "Raven",
   "type": "Companion",
   "before": {
     "elements": [
@@ -9,38 +9,38 @@
       },
       {
         "type": "text",
-        "text": "Your hawk can aid you while it is aloft."
+        "text": "Your raven heeds your call."
       }
     ]
   },
   "abilities": [
     {
-      "name": "Far-seeing",
+      "name": "Sly",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Undertake a Journey*, or when you *Resupply* by hunting for small game, add +1."
+          "text": "When you *Secure an Advantage* or *Face Danger* +shadow using your raven to perform trickery (such as creating a distraction or stealing a small object) add +1 and take +1 momentum on a hit."
         }
       ]
     },
     {
-      "name": "Fierce",
+      "name": "Knowing",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Secure an Advantage* +edge using your hawk to harass and distract your foes, add +1 and take +1 momentum on a hit."
+          "text": "When you *Face Death*,add +2 and take +1 momentum on a hit."
         }
       ]
     },
     {
-      "name": "Vigilant",
+      "name": "Diligent",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Face Danger* +wits to detect an approaching threat, or when you *Enter the Fray* +wits against an ambush, add +2."
+          "text": "When your raven carries messages for you, you may *Secure an Advantage*, *Gather Information*, or *Compel* from a distance."
         }
       ]
     }
@@ -51,8 +51,8 @@
         "type": "number-value",
         "name": "Health",
         "min": 0,
-        "max": 3,
-        "value": 3
+        "max": 2,
+        "value": 2
       }
     ]
   }

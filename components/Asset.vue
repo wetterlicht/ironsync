@@ -131,11 +131,8 @@ export default {
     background-color: black;
   }
 
-  /deep/ .before {
+  .before {
     padding-top: 1rem;
-    .markdown {
-      margin: 1rem 0;
-    }
   }
 
   .type {
@@ -156,11 +153,7 @@ export default {
   .abilities {
     list-style-type: none;
     padding: 0;
-    margin: 1rem 0;
-
-    .ability {
-      padding-bottom: 1rem;
-    }
+    margin: 1rem 0 0 0;
   }
 }
 </style>

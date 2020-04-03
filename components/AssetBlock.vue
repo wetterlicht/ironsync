@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(element, index) in elements" :key="index">
+    <div v-for="(element, index) in elements" :key="index" class="element">
       <vue-showdown
         v-if="element.type === 'text'"
         :markdown="element.text"
@@ -61,6 +61,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.element {
+  margin-bottom: 1rem;
+}
 /deep/ .markdown {
   p {
     margin: 0;

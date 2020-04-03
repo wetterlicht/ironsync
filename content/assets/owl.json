@@ -1,5 +1,5 @@
 {
-  "name": "Hawk",
+  "name": "Owl",
   "type": "Companion",
   "before": {
     "elements": [
@@ -9,38 +9,38 @@
       },
       {
         "type": "text",
-        "text": "Your hawk can aid you while it is aloft."
+        "text": "Your owl soars through the darkness."
       }
     ]
   },
   "abilities": [
     {
-      "name": "Far-seeing",
+      "name": "Nocturnal",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Undertake a Journey*, or when you *Resupply* by hunting for small game, add +1."
+          "text": "If you *Resupply* at night by sending your owl to hunt, take +2 momentum on a hit. When you *Enter the Fray* +wits against an ambush in darkness, add +1 and take +1 momentum on a hit."
         }
       ]
     },
     {
-      "name": "Fierce",
+      "name": "Sage",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Secure an Advantage* +edge using your hawk to harass and distract your foes, add +1 and take +1 momentum on a hit."
+          "text": "When you leverage your owl’s secret knowledge to perform a ritual, add +1 or take +1 momentum on a hit (decide before rolling)."
         }
       ]
     },
     {
-      "name": "Vigilant",
+      "name": "Embodying",
       "active": false,
       "elements": [
         {
           "type": "text",
-          "text": "When you *Face Danger* +wits to detect an approaching threat, or when you *Enter the Fray* +wits against an ambush, add +2."
+          "text": "When you *Face Death*, take your owl’s health as +momentum before you roll."
         }
       ]
     }
