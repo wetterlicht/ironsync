@@ -99,12 +99,9 @@ li {
 }
 
 .tracks {
+  margin: 1rem;
   .track {
-    color: #fff;
-    background-color: #4a4a4a;
-    margin: 20px;
-    text-align: right;
-    border-radius: 4px;
+    margin-bottom: 1rem;
   }
 
   .add {
