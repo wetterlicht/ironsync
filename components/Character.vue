@@ -175,24 +175,32 @@
           </button>
           <div v-if="selectingAsset">
             <div class="asset-selection__grid">
-              <asset
+              <div
                 v-for="asset in availableAssets"
                 :key="asset.name"
-                v-bind="asset"
-                :is-interactive="false"
-                @add="addAsset(asset)"
-              ></asset>
+                class="asset-wrapper"
+              >
+                <asset
+                  v-bind="asset"
+                  :is-interactive="false"
+                  @add="addAsset(asset)"
+                ></asset>
+              </div>
             </div>
           </div>
         </div>
         <div class="assets">
-          <asset
+          <div
             v-for="(asset, index) in assets"
             :key="asset.name"
-            v-bind="asset"
-            @change="onAssetChange($event, index)"
-            @remove="removeAsset(index)"
-          ></asset>
+            class="asset-wrapper"
+          >
+            <asset
+              v-bind="asset"
+              @change="onAssetChange($event, index)"
+              @remove="removeAsset(index)"
+            ></asset>
+          </div>
         </div>
       </div>
       <div>
@@ -666,10 +674,11 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1rem;
+  }
 
-    .asset {
-      text-align: left;
-    }
+  .asset-wrapper {
+    display: flex;
+    justify-content: center;
   }
 
   .vows__add {

@@ -121,6 +121,7 @@ export default {
 
   border-radius: 4px;
   overflow: hidden;
+  background-color: #666;
 
   .header {
     text-align: center;
