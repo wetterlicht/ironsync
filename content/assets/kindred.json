@@ -1,0 +1,63 @@
+{
+  "name": "Kindred",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      },
+      {
+        "type": "text",
+        "text": "Your friend stands by you."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Skilled",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you make a move outside of combat aided by your companion’s expertise, add +1."
+        },
+        {
+          "type": "text-value",
+          "name": "Expertise"
+        }
+      ]
+    },
+    {
+      "name": "Shield-Kin",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Clash* or *Battle* alongside your companion, or when you *Face Danger* against an attack by standing together, add +1."
+        }
+      ]
+    },
+    {
+      "name": "Bonded",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "Once you mark a bond with your companion, add +1 when you *Face Desolation* in their presence."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 4,
+        "value": 4
+      }
+    ]
+  }
+}

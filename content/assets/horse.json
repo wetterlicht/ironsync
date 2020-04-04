@@ -1,0 +1,59 @@
+{
+  "name": "Horse",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      },
+      {
+        "type": "text",
+        "text": "You and your horse ride as one."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Swift",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Face Danger* +edge using your horse’s speed and grace, or when you *Undertake a Journey*, add +1."
+        }
+      ]
+    },
+    {
+      "name": "Fearless",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Enter the Fray* or *Secure an Advantage* +heart by charging into combat, add +1 and take +1 momentum on a hit."
+        }
+      ]
+    },
+    {
+      "name": "Mighty",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* or *Clash* at close range while mounted, add +1 and inflict +1 harm on a hit."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 5,
+        "value": 5
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "Cave Lion",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      },
+      {
+        "type": "text",
+        "text": "Your cat takes down its prey."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Eager",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When your cat chases down big game, you may *Resupply* with +edge (instead of +wits). If you do, take +1 supply or +1 momentum on a strong hit."
+        }
+      ]
+    },
+    {
+      "name": "Inescapable",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Enter the Fray* or *Strike* by sending your cat to attack, roll +edge. On a hit, take +2 momentum."
+        }
+      ]
+    },
+    {
+      "name": "Protective",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Make Camp*, your cat is alert to trouble. If you or an ally choose to relax, take +1 spirit. If you focus, take +1 momentum."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 4,
+        "value": 4
+      }
+    ]
+  }
+}

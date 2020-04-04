@@ -1,0 +1,41 @@
+{
+  "name": "Slinger",
+  "type": "Combat Talent",
+  "before": {
+    "elements": [
+      {
+        "type": "text",
+        "text": "If you wield a sling..."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When launched from a sling, a simple stone inflicts deadly harm (2 harm). When you *Enter the Fray* by barraging your foe with sling-bullets, inflict harm on a strong hit."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* by launching stones at an advancing foe, you may choose one (before rolling).\n- Hold them back: Retain initiative on a weak hit, but inflict only 1 harm.\n- Hit them hard: Inflict +1 harm on a hit, but suffer -1 momentum."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Secure an Advantage* by preparing stones of a special quality or material, add +1. Then, take +1 momentum or +1 supply on a hit."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Waterborn",
+  "type": "Path",
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Face Danger*, *Gather Information*, or *Secure an Advantage* related to your knowledge of watercraft, water travel, or aquatic environments or creatures, add +1 and take +1 momentum on a hit."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Undertake a Journey* by boat or ship, add +1. On a strong hit, also choose one.\n- The wind is at your back: Mark progress twice.\n- Find safe anchor: *Make Camp* now and reroll any dice.\n- Reap the bounty: *Resupply* now and reroll any dice."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Enter the Fray* aboard a boat or ship, reroll any dice."
+        }
+      ]
+    }
+  ]
+}

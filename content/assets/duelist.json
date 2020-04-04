@@ -1,0 +1,41 @@
+{
+  "name": "Duelist",
+  "type": "Combat Talent",
+  "before": {
+    "elements": [
+      {
+        "type": "text",
+        "text": "If you wield a bladed weapon in each hand..."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* or *Clash*, you may add +2. If you do (decide before rolling), inflict +1 harm on a strong hit and count a weak hit as a miss."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "Once per fight, when you *Secure an Advantage* +edge by making a bold display of your combat prowess, you may reroll any dice."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Draw the Circle*, choose one (before rolling).\n- Add +2.\n- Take +2 momentum on a hit."
+        }
+      ]
+    }
+  ]
+}

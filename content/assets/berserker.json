@@ -1,0 +1,41 @@
+{
+  "name": "Berserker",
+  "type": "Combat Talent",
+  "before": {
+    "elements": [
+      {
+        "type": "text",
+        "text": "If you are clad only in animal pelts…"
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* or *Clash* by unleashing your rage (decide before rolling), inflict +1 harm on a hit. Then, choose one.\n- Push yourself: *Endure Harm* (1 harm).\n- Lose yourself: *Endure Stress* (1 stress)."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "Once per fight, when you *Strike* or *Clash*, you may take extra shots and suffer -1 supply (decide before rolling). When you do, reroll any dice. On a hit, inflict +2 harm and take +1 momentum."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Endure Harm* in a fight, and your health is above 0, you may let the pain inflame your wildness (decide before rolling). If you then score a strong hit and choose to embrace the pain, take +momentum equal to your remaining health. A weak hit counts as a miss."
+        }
+      ]
+    }
+  ]
+}

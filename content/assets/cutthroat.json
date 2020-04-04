@@ -1,0 +1,41 @@
+{
+  "name": "Cutthroat",
+  "type": "Combat Talent",
+  "before": {
+    "elements": [
+      {
+        "type": "text",
+        "text": "If you wield a dagger or knife..."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you are in position to *Strike* at an unsuspecting foe, choose one (before rolling).\n- Add +2 and take +1 momentumon a hit.\n- Inflict +2 harm on a hit"
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Compel* someone at the point of your blade, or when you rely on your blade to *Face Danger*, add +1."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "Once per fight, when you *Secure an Advantage* +shadow by performing a feint or misdirection, reroll any dice and take +1 momentum on a hit."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Spirit-Bound",
+  "type": "Path",
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "You are haunted by someone whose death you caused through your actions or failures. When you consult with their spirit to *Secure an Advantage* or *Gather Information*, add +1 and take +2 momentum on a hit. On a weak hit, also *Endure Stress* (1 stress)."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Face Death* guided by the spirit, add +1. On a strong hit, envision what you learn and take 1 experience."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "One time only, when you successfully *Fulfill Your Vow* (formidable or greater) in service to the spirit, choose one.\n- Let them go: Take 2 experience for each marked ability and discard this asset.\n- Deepen your connection: Add +1 more when you leverage this asset."
+        }
+      ]
+    }
+  ]
+}

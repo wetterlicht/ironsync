@@ -1,0 +1,59 @@
+{
+  "name": "Mammoth",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      },
+      {
+        "type": "text",
+        "text": "Your mammoth walks a resolute path."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Lumbering",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When your mammoth travels with you as you *Undertake a Journey*, you may add +2 but suffer -1 momentum (decide before rolling)."
+        }
+      ]
+    },
+    {
+      "name": "Beast of burden",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you make a move which requires you to roll +supply, you may instead roll +your mammoth’s health."
+        }
+      ]
+    },
+    {
+      "name": "Overpowering",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* or *Clash* by riding your mammoth against a pack of foes, add +1 and inflict +1 harm on a hit."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 5,
+        "value": 5
+      }
+    ]
+  }
+}

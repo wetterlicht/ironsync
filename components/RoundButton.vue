@@ -22,7 +22,7 @@ export default {}
   width: 50px;
   height: 50px;
   line-height: 50px;
-  background-color: #4a4a4a;
+  background-color: #5f5f5f;
   transition: all 0.1s ease-in-out;
   text-align: center;
 
@@ -30,7 +30,7 @@ export default {}
   &:hover {
     transform: scale(1.05);
     outline: none;
-    background-color: #5f5f5f;
+    background-color: #6f6f6f;
   }
 
   &:active {

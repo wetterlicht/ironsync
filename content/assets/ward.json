@@ -1,0 +1,33 @@
+{
+  "name": "Ward",
+  "type": "Ritual",
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you walk a wide circle, sprinkling the ground with salt, roll +wits. On a strong hit, choose two. On a weak hit, chose one.\n- When a foe first crosses the boundary, take +1 momentum.\n- When you first inflict harm against a foe within the boundary, inflict +1 harm\nYour ward is'likely' (*Ask the Oracle*) to trap a foe within the boundary."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "As above, and improve the effect of your ward (+2 momentum, +2 harm, and 'almost certain')."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you perform this ritual, add +1 and take +1 momentum on a hit."
+        }
+      ]
+    }
+  ]
+}

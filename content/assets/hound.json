@@ -1,0 +1,59 @@
+{
+  "name": "Hound",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      },
+      {
+        "type": "text",
+        "text": "Your hound is your steadfast companion."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Sharp",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Gather Information* using your hound’s keen senses to track your quarry or investigate a scene, add +1 and take +1 momentum on a hit."
+        }
+      ]
+    },
+    {
+      "name": "Ferocious",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* or *Clash* alongside your hound and score a hit, inflict +1 harm or take +1 momentum."
+        }
+      ]
+    },
+    {
+      "name": "Loyal",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Endure Stress* in the company of your hound, add +1."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 4,
+        "value": 4
+      }
+    ]
+  }
+}

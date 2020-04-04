@@ -1,0 +1,59 @@
+{
+  "name": "Owl",
+  "type": "Companion",
+  "before": {
+    "elements": [
+      {
+        "type": "text-value",
+        "name": "Name"
+      },
+      {
+        "type": "text",
+        "text": "Your owl soars through the darkness."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "name": "Nocturnal",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "If you *Resupply* at night by sending your owl to hunt, take +2 momentum on a hit. When you *Enter the Fray* +wits against an ambush in darkness, add +1 and take +1 momentum on a hit."
+        }
+      ]
+    },
+    {
+      "name": "Sage",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you leverage your owl’s secret knowledge to perform a ritual, add +1 or take +1 momentum on a hit (decide before rolling)."
+        }
+      ]
+    },
+    {
+      "name": "Embodying",
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Face Death*, take your owl’s health as +momentum before you roll."
+        }
+      ]
+    }
+  ],
+  "after": {
+    "elements": [
+      {
+        "type": "number-value",
+        "name": "Health",
+        "min": 0,
+        "max": 3,
+        "value": 3
+      }
+    ]
+  }
+}
