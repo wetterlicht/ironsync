@@ -173,7 +173,7 @@
           >
             {{ selectingAsset ? 'Close' : 'Add Assets' }}
           </button>
-          <div v-if="selectingAsset">
+          <div v-show="selectingAsset">
             <div class="asset-selection__grid">
               <div
                 v-for="asset in availableAssets"

@@ -1,0 +1,41 @@
+{
+  "name": "Skirmisher",
+  "type": "Combat Talent",
+  "before": {
+    "elements": [
+      {
+        "type": "text",
+        "text": "If you wield a spear..."
+      }
+    ]
+  },
+  "abilities": [
+    {
+      "active": true,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Face Danger* by holding a foe at bay using your spear’s reach, roll +iron or +edge. If you score a hit, you may...\n- Iron: Strike (if you have initiative) or Clash now, and add +1.\n- Edge: Take +1 momentum."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Strike* in close combat, you may attempt to drive your spear home (decide before rolling). If you do, add +1 and inflict +2 harm on a hit. If you score a hit and the fight continues, *Face Danger* +iron to recover your spear."
+        }
+      ]
+    },
+    {
+      "active": false,
+      "elements": [
+        {
+          "type": "text",
+          "text": "When you *Secure an Advantage* by bracing your spear against a charging foe, add +1 and take +1 momentum on a hit."
+        }
+      ]
+    }
+  ]
+}
