@@ -6,7 +6,7 @@
       :key="characterId"
       @remove="removeCharacter($event, index)"
     ></character>
-    <round-button class="add" @click="addCharacter">+</round-button>
+    <base-button class="add" @click="addCharacter">New Character</base-button>
   </div>
 </template>
 
@@ -14,12 +14,12 @@
 import { v4 as uuidv4 } from 'uuid'
 import { fireDb } from '~/plugins/firebase'
 import Character from '~/components/Character.vue'
-import RoundButton from '~/components/RoundButton.vue'
+import BaseButton from '~/components/BaseButton.vue'
 export default {
   layout: 'adventure',
   components: {
     Character,
-    RoundButton
+    BaseButton
   },
   data() {
     return {
@@ -38,8 +38,8 @@ export default {
     this.unsubscribe = this.document.onSnapshot((doc) => {
       if (doc.exists) {
         this.characters = doc.data().characters || []
+        this.loaded = true
       }
-      this.loaded = true
     })
   },
   beforeDestroy() {
@@ -76,5 +76,7 @@ export default {
 }
 .add {
   margin: 10px auto;
+  font-size: 18px;
+  padding: 1rem;
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div class="asset">
-    <div class="header">
-      <div class="type">
-        {{ type }}
+    <div class="header" @click.stop="toggleOpen">
+      <div class="name">
+        {{ name }}
       </div>
-      <remove-icon v-if="isInteractive" @click="$emit('remove')" />
-      <base-button v-if="!isInteractive" class="add" @click="$emit('add')"
+      <remove-icon v-if="isInteractive" @click.stop="$emit('remove')" />
+      <base-button v-if="!isInteractive" class="add" @click.stop="$emit('add')"
         >Add</base-button
       >
     </div>
-    <div class="body">
-      <div class="name">
-        {{ name }}
+    <div v-if="isOpen" class="body">
+      <div class="type">
+        {{ type }}
       </div>
       <asset-block
         v-if="before"
@@ -55,6 +55,10 @@ export default {
     RemoveIcon
   },
   props: {
+    startOpen: {
+      type: Boolean,
+      default: false
+    },
     isInteractive: {
       type: Boolean,
       default: true
@@ -80,7 +84,13 @@ export default {
       default: null
     }
   },
+  data() {
+    return { isOpen: this.startOpen }
+  },
   methods: {
+    toggleOpen() {
+      this.isOpen = !this.isOpen
+    },
     onBeforeChange(before) {
       this.$emit('change', {
         name: this.name,
@@ -116,7 +126,7 @@ export default {
 
 <style lang="scss" scoped>
 .asset {
-  width: 300px;
+  width: 100%;
   text-align: left;
 
   border-radius: 4px;
@@ -125,11 +135,16 @@ export default {
 
   .header {
     text-align: center;
-    padding: 10px;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: black;
+
+    .name {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
   }
 
   .before {
@@ -144,11 +159,6 @@ export default {
     background-color: #666;
     padding: 10px;
     border-radius: 0 0 4px 4px;
-  }
-
-  .name {
-    text-transform: uppercase;
-    font-weight: bold;
   }
 
   .abilities {

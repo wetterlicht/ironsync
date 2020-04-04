@@ -61,6 +61,7 @@
           </div>
         </div>
         <momentum-input
+          class="momentum"
           :current-value="momentum"
           @valueChange="onMomentumChange"
         ></momentum-input>
@@ -162,33 +163,6 @@
       </div>
       <div>
         <h4 class="section-title">Assets</h4>
-        <div class="asset-selection">
-          <button
-            :class="[
-              'asset-selection__title',
-              selectingAsset && 'asset-selection__title--active'
-            ]"
-            tabindex="0"
-            @click="toggleSelectingAsset()"
-          >
-            {{ selectingAsset ? 'Close' : 'Add Assets' }}
-          </button>
-          <div v-show="selectingAsset">
-            <div class="asset-selection__grid">
-              <div
-                v-for="asset in availableAssets"
-                :key="asset.name"
-                class="asset-wrapper"
-              >
-                <asset
-                  v-bind="asset"
-                  :is-interactive="false"
-                  @add="addAsset(asset)"
-                ></asset>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="assets">
           <div
             v-for="(asset, index) in assets"
@@ -202,6 +176,10 @@
             ></asset>
           </div>
         </div>
+        <asset-selection
+          :available-assets="availableAssets"
+          @selected="addAsset"
+        />
       </div>
       <div>
         <h4 class="section-title">Bonds</h4>
@@ -235,6 +213,7 @@ import StatusInput from '~/components/StatusInput.vue'
 import MomentumInput from '~/components/MomentumInput.vue'
 import NumberInput from '~/components/NumberInput.vue'
 import Asset from '~/components/Asset.vue'
+import AssetSelection from '~/components/AssetSelection.vue'
 import { fireDb } from '~/plugins/firebase'
 export default {
   components: {
@@ -245,7 +224,8 @@ export default {
     ProgressTrack,
     BondsTrack,
     NumberInput,
-    Asset
+    Asset,
+    AssetSelection
   },
   props: {
     id: {
@@ -257,7 +237,6 @@ export default {
     return {
       character: null,
       allAssets: null,
-      selectingAsset: false,
       unsubscribe: null
     }
   },
@@ -343,9 +322,14 @@ export default {
   },
   mounted() {
     const resolve = require.context('~/content/assets', true, /\.json$/)
-    const allAssets = resolve.keys().map((key) => {
-      return resolve(key)
-    })
+    const allAssets = resolve
+      .keys()
+      .map((key) => {
+        return resolve(key)
+      })
+      .sort((a, b) => {
+        return a.type.localeCompare(b.type)
+      })
     this.allAssets = allAssets
 
     this.unsubscribe = this.document.onSnapshot((doc) => {
@@ -502,9 +486,7 @@ export default {
         assets
       })
     },
-    toggleSelectingAsset() {
-      this.selectingAsset = !this.selectingAsset
-    },
+
     addAsset(asset) {
       const assets = [...this.assets]
       assets.push(asset)
@@ -585,6 +567,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: -16px;
   }
 
   .stats {
@@ -601,6 +584,12 @@ export default {
     }
   }
 
+  .stats,
+  .momentum,
+  .status {
+    margin: 16px 16px 0 0;
+  }
+
   .status {
     display: grid;
     grid-template-columns: repeat(3, min-content);
@@ -608,72 +597,18 @@ export default {
   }
 
   .debilities {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .asset-selection {
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 0 0 1rem 0;
-    text-align: center;
-
-    .asset-selection__title {
-      padding: 1rem;
-      position: relative;
-      background: black;
-      text-align: center;
-      border: none;
-      color: white;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 16px;
-      border-radius: 4px;
-
-      &:hover,
-      &:focus {
-        outline: none;
-        background-color: #333;
-      }
-
-      &.asset-selection__title--active {
-        width: 100%;
-        &:before {
-          content: ' ';
-          width: 0px;
-          height: 0px;
-          border-top: 16px solid black;
-          border-right: 24px solid transparent;
-          border-bottom: 16px solid transparent;
-          border-left: 24px solid transparent;
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          margin-left: -24px;
-        }
-
-        &:hover,
-        &:focus {
-          &:before {
-            border-top-color: #333;
-          }
-        }
-      }
-    }
-
-    .asset-selection__grid {
-      background-color: #757575;
-      padding: 32px 15px 32px 15px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      grid-gap: 1rem;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-gap: 16px;
+    text-align: left;
+    margin: 0 auto;
   }
 
   .assets {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     grid-gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .asset-wrapper {

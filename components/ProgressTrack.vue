@@ -1,9 +1,8 @@
 <template>
   <div class="progress-track">
     <div class="progress-track__header">
-      <input
+      <text-input
         :value="description"
-        type="text"
         class="progress-track__description"
         @input="$emit('descriptionChange', $event.target.value)"
       />
@@ -43,10 +42,12 @@
 <script>
 import RemoveIcon from '~/components/RemoveIcon.vue'
 import ProgressBox from '~/components/ProgressBox.vue'
+import TextInput from '~/components/TextInput.vue'
 export default {
   components: {
     ProgressBox,
-    RemoveIcon
+    RemoveIcon,
+    TextInput
   },
   props: {
     id: {

@@ -1,25 +1,22 @@
 <template>
   <div class="moves">
     <div class="moves__header">
-      <div class="moves__filters">
+      <text-input
+        :value="searchString"
+        placeholder="Search"
+        class="moves__search"
+        @input="onSearch"
+      />
+      <div v-for="type in types" :key="type" class="moves__type">
         <input
-          :value="searchString"
-          placeholder="Search"
-          type="text"
-          class="moves__search"
-          @input="onSearch"
+          :id="type"
+          :checked="activeTypes.includes(type)"
+          :name="type"
+          type="checkbox"
+          class="moves_type-checkbox"
+          @change="onCheckType($event)"
         />
-        <div v-for="type in types" :key="type" class="moves__type">
-          <input
-            :id="type"
-            :checked="activeTypes.includes(type)"
-            :name="type"
-            type="checkbox"
-            class="moves_type-checkbox"
-            @change="onCheckType($event)"
-          />
-          <label :for="type">{{ type }}</label>
-        </div>
+        <label :for="type">{{ type }}</label>
       </div>
       <button class="moves__reset" @click="onResetFilters">
         Reset All Filters
@@ -43,11 +40,13 @@
 </template>
 
 <script>
-import Move from '~/components/Move'
+import TextInput from '~/components/TextInput.vue'
+import Move from '~/components/Move.vue'
 export default {
   layout: 'adventure',
   components: {
-    Move
+    Move,
+    TextInput
   },
   asyncData() {
     const resolve = require.context('~/content/markdown/moves', true, /\.md$/)
@@ -121,57 +120,53 @@ export default {
   padding: 20px;
 
   .moves__header {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 16px;
     align-items: center;
-    justify-content: left;
 
-    .moves__filters {
-      display: flex;
-      align-items: center;
+    .moves__search {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+      padding: 5px;
+    }
 
-      .moves__search {
+    .moves__type {
+      label {
+        text-align: center;
+        display: block;
         font-family: 'Times New Roman', Times, serif;
         font-size: 18px;
-        padding: 5px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #ccc;
+        padding: 7px 1rem;
+        background-color: #4f4f4f;
+
+        &:hover {
+          color: #fff;
+          background-color: black;
+        }
       }
 
-      .moves__type {
-        margin: 0 0 0 1rem;
+      .moves_type-checkbox {
+        display: none;
 
-        label {
-          font-family: 'Times New Roman', Times, serif;
-          font-size: 18px;
-          border: 1px solid transparent;
-          border-radius: 4px;
-          color: #ccc;
-          padding: 7px 1rem;
-          background-color: #4f4f4f;
-
-          &:hover {
-            color: #fff;
-            background-color: black;
-          }
-        }
-
-        .moves_type-checkbox {
-          display: none;
-
-          &:checked + label {
-            color: #fff;
-            background-color: #000;
-            border: 1px solid #00c8faa8;
-          }
+        &:checked + label {
+          color: #fff;
+          background-color: #000;
+          border: 1px solid #00c8faa8;
         }
       }
     }
 
     .moves__reset {
+      text-align: left;
       cursor: pointer;
       font-family: 'Times New Roman', Times, serif;
       font-size: 18px;
       border: 0;
       outline: none;
-      margin: 0 0 0 1rem;
       border-radius: 4px;
       color: #ccc;
       background: none;

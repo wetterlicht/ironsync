@@ -63,7 +63,7 @@ export default {
 <style lang="scss" scoped>
 .momentum-input {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, min-content);
   grid-gap: 16px;
   text-align: center;
 
