@@ -64,7 +64,7 @@ export default {
       padding: 10px 20px;
     }
   }
-  td:first-child {
+  td:not(:last-child) {
     max-width: 100%;
     width: 1%;
     white-space: nowrap;

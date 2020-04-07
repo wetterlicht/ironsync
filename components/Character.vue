@@ -1,6 +1,6 @@
 <template>
   <div v-if="character" class="character">
-    <div class="header">
+    <div class="header" @click.self="toggleOpen">
       <input
         :id="`${id}-name`"
         class="name"
@@ -11,7 +11,7 @@
       />
       <remove-icon @click="onRemove" />
     </div>
-    <div class="body">
+    <div v-show="isOpen" class="body">
       <div class="name-section">
         <div class="stats">
           <div class="stat">
@@ -235,6 +235,7 @@ export default {
   },
   data() {
     return {
+      isOpen: false,
       character: null,
       allAssets: null,
       unsubscribe: null
@@ -346,6 +347,9 @@ export default {
     }
   },
   methods: {
+    toggleOpen() {
+      this.isOpen = !this.isOpen
+    },
     setCharacter(updatedCharacter) {
       this.document.update(updatedCharacter)
     },
@@ -477,10 +481,8 @@ export default {
       })
     },
     onAssetChange(asset, index) {
-      console.log('onAssetChange', asset)
       const assets = [...this.assets]
       assets.splice(index, 1, asset)
-      console.log('onAssetChange')
       this.setCharacter({
         ...this.character,
         assets
@@ -538,10 +540,17 @@ export default {
   overflow: hidden;
   color: #fff;
 
+  &:hover,
+  &:focus {
+    background-color: #333;
+    outline: none;
+  }
+
   .header {
     padding: 15px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .name {
       font-family: 'Times New Roman', Times, serif;
