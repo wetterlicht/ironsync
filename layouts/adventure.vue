@@ -48,7 +48,7 @@ export default {
     const docRef = fireDb.collection('adventures').doc(route.params.adventure)
     const docSnapshot = await docRef.get()
     if (!docSnapshot.exists) {
-      return redirect('/404')
+      return redirect('/')
     }
   },
   components: {

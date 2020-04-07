@@ -2,9 +2,8 @@
   <div class="call">
     <h1 class="title">Looking for someone to share in an adventure?</h1>
     <form @submit.prevent="createAdventure">
-      <input
+      <text-input
         v-model="adventureName"
-        type="text"
         placeholder="Name your tale..."
         class="name"
         required
@@ -17,8 +16,12 @@
 </template>
 
 <script>
+import TextInput from '~/components/TextInput.vue'
 import { fireDb } from '~/plugins/firebase'
 export default {
+  components: {
+    TextInput
+  },
   data() {
     return {
       adventureName: ''
