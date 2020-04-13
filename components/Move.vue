@@ -1,8 +1,8 @@
 <template>
-  <div class="move">
-    <div class="move__name" @click="$emit('selected')">{{ name }}</div>
-    <component :is="component" v-show="isOpen" class="move__text"></component>
-  </div>
+  <details class="move">
+    <summary class="move__name" @click="$emit('selected')">{{ name }}</summary>
+    <component :is="component" class="move__text"></component>
+  </details>
 </template>
 
 <script>
@@ -14,10 +14,6 @@ export default {
     },
     component: {
       type: Object,
-      required: true
-    },
-    isOpen: {
-      type: Boolean,
       required: true
     }
   }

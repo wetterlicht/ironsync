@@ -1,18 +1,19 @@
 <template>
-  <div v-if="character" class="character">
-    <div class="header" @click.self="toggleOpen">
-      <input
-        :id="`${id}-name`"
-        class="name"
-        placeholder="Name"
-        type="text"
-        :value="name"
-        @input="onNameChange"
-      />
+  <details v-if="character" class="character">
+    <summary class="header">
+      <div class="name">
+        <text-input
+          :id="`${id}-name`"
+          placeholder="Name"
+          :value="name"
+          :is-dark="true"
+          @input="onNameChange"
+        />
+      </div>
       <remove-icon @click="onRemove" />
-    </div>
-    <div v-show="isOpen" class="body">
-      <div class="name-section">
+    </summary>
+    <div class="body">
+      <div class="section overview">
         <div class="stats">
           <div class="stat">
             <label :for="`${id}-edge`">Edge</label>
@@ -84,8 +85,8 @@
           />
         </div>
       </div>
-      <div>
-        <h4 class="section-title">Debilities</h4>
+      <details class="section">
+        <summary class="section__title">Debilities</summary>
         <div class="debilities">
           <div>
             <input
@@ -160,9 +161,9 @@
             <label :for="`${id}-tormented`">Tormented</label>
           </div>
         </div>
-      </div>
-      <div>
-        <h4 class="section-title">Assets</h4>
+      </details>
+      <details class="section">
+        <summary class="section__title">Assets</summary>
         <div class="assets">
           <div
             v-for="(asset, index) in assets"
@@ -180,15 +181,15 @@
           :available-assets="availableAssets"
           @selected="addAsset"
         />
-      </div>
-      <div>
-        <h4 class="section-title">Bonds</h4>
+      </details>
+      <details class="section">
+        <summary class="section__title">Bonds</summary>
         <div class="bonds">
           <bonds-track :progress="bonds" @progressChange="onBondsChange" />
         </div>
-      </div>
-      <div>
-        <h4 class="section-title">Vows</h4>
+      </details>
+      <details class="section">
+        <summary class="section__title">Vows</summary>
         <progress-track
           v-for="(vow, index) in vows"
           :id="index"
@@ -198,27 +199,35 @@
           @progressChange="onProgressChange($event, index)"
           @remove="removeVow($event, index)"
         />
-        <round-button class="vows__add" @click="addVow">+</round-button>
-      </div>
+        <base-button class="vows__add" @click="addVow">Add Vow</base-button>
+      </details>
+      <details class="section">
+        <summary class="section__title">Notes</summary>
+        <text-area-input class="notes" :value="notes" @input="onNotesChange" />
+      </details>
     </div>
-  </div>
+  </details>
 </template>
 
 <script>
-import RoundButton from '~/components/RoundButton.vue'
+import BaseButton from '~/components/BaseButton.vue'
 import RemoveIcon from '~/components/RemoveIcon.vue'
 import BondsTrack from '~/components/BondsTrack.vue'
 import ProgressTrack from '~/components/ProgressTrack.vue'
 import StatusInput from '~/components/StatusInput.vue'
 import MomentumInput from '~/components/MomentumInput.vue'
 import NumberInput from '~/components/NumberInput.vue'
+import TextInput from '~/components/TextInput.vue'
+import TextAreaInput from '~/components/TextAreaInput.vue'
 import Asset from '~/components/Asset.vue'
 import AssetSelection from '~/components/AssetSelection.vue'
 import { fireDb } from '~/plugins/firebase'
 export default {
   components: {
-    RoundButton,
+    BaseButton,
     RemoveIcon,
+    TextInput,
+    TextAreaInput,
     StatusInput,
     MomentumInput,
     ProgressTrack,
@@ -235,7 +244,6 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
       character: null,
       allAssets: null,
       unsubscribe: null
@@ -319,6 +327,9 @@ export default {
     },
     tormented() {
       return this.character.tormented || false
+    },
+    notes() {
+      return this.character.notes || ''
     }
   },
   mounted() {
@@ -347,9 +358,6 @@ export default {
     }
   },
   methods: {
-    toggleOpen() {
-      this.isOpen = !this.isOpen
-    },
     setCharacter(updatedCharacter) {
       this.document.update(updatedCharacter)
     },
@@ -357,6 +365,12 @@ export default {
       this.setCharacter({
         ...this.character,
         name: event.target.value
+      })
+    },
+    onNotesChange(event) {
+      this.setCharacter({
+        ...this.character,
+        notes: event.target.value
       })
     },
     onExpChange(event) {
@@ -549,21 +563,10 @@ export default {
   .header {
     padding: 15px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     .name {
-      font-family: 'Times New Roman', Times, serif;
-      padding: 4px;
-      border-radius: 4px;
-      outline: none;
-      border: 1px solid transparent;
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-
-      &:focus {
-        border: 1px solid #00c8fa;
-        box-shadow: 0 0 4px rgba(255, 255, 255, 1);
-      }
+      flex-grow: 1;
     }
   }
 
@@ -572,17 +575,10 @@ export default {
     padding: 15px;
   }
 
-  .name-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: -16px;
-  }
-
   .stats {
     display: grid;
     grid-template-columns: repeat(5, min-content);
-    grid-gap: 16px;
+    grid-gap: 1rem;
 
     .stat {
       text-align: center;
@@ -596,19 +592,19 @@ export default {
   .stats,
   .momentum,
   .status {
-    margin: 16px 16px 0 0;
+    margin: 1rem 1rem 0 0;
   }
 
   .status {
     display: grid;
     grid-template-columns: repeat(3, min-content);
-    grid-gap: 16px;
+    grid-gap: 1rem;
   }
 
   .debilities {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    grid-gap: 16px;
+    grid-gap: 1rem;
     text-align: left;
     margin: 0 auto;
   }
@@ -633,17 +629,46 @@ export default {
     margin-bottom: 1rem;
   }
 
-  .section-title {
-    text-align: center;
-    display: flex;
+  .section {
+    margin: 1rem 0 2rem 0;
 
-    &:before,
-    &:after {
-      content: '';
-      flex: 1;
-      border-bottom: 1px solid white;
-      margin: auto 0.25em;
+    &:last-child {
+      margin-bottom: 0;
     }
+
+    .section__title {
+      display: flex;
+      align-items: center;
+      padding-bottom: 1rem;
+
+      &:hover,
+      &:focus {
+        color: #00c8fa;
+        &:after {
+          background: #00c8fa;
+        }
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+
+      &:after {
+        margin-left: 1rem;
+        flex: 1;
+        content: '';
+        height: 1px;
+        background: white;
+      }
+    }
+  }
+
+  .overview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: -1rem;
   }
 }
 </style>

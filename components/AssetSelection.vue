@@ -1,55 +1,44 @@
 <template>
-  <div class="asset-selection">
-    <button
-      :class="[
-        'asset-selection__title',
-        isOpen && 'asset-selection__title--active'
-      ]"
-      tabindex="0"
-      @click="toggleOpen()"
-    >
-      {{ isOpen ? 'Close' : 'Add Assets' }}
-    </button>
-    <div v-if="isOpen">
-      <div class="asset-selection__header">
-        <text-input
-          :value="searchString"
-          placeholder="Search"
-          type="text"
-          class="asset-selection__search"
-          @input="onSearch"
+  <details class="asset-selection">
+    <summary class="asset-selection__summary">Add Assets</summary>
+    <div class="asset-selection__header">
+      <text-input
+        :value="searchString"
+        placeholder="Search"
+        type="text"
+        class="asset-selection__search"
+        @input="onSearch"
+      />
+      <div v-for="type in types" :key="type" class="asset-selection__type">
+        <input
+          :id="type"
+          :checked="activeTypes.includes(type)"
+          :name="type"
+          type="checkbox"
+          class="asset-selection_type-checkbox"
+          @change="onCheckType($event)"
         />
-        <div v-for="type in types" :key="type" class="asset-selection__type">
-          <input
-            :id="type"
-            :checked="activeTypes.includes(type)"
-            :name="type"
-            type="checkbox"
-            class="asset-selection_type-checkbox"
-            @change="onCheckType($event)"
-          />
-          <label :for="type">{{ type }}</label>
-        </div>
-        <button class="asset-selection__reset" @click="onResetFilters">
-          Reset All Filters
-        </button>
+        <label :for="type">{{ type }}</label>
       </div>
-      <div class="asset-selection__grid">
-        <div
-          v-for="asset in availableAssets"
-          v-show="isAssetVisible(asset.name, asset.type)"
-          :key="asset.name"
-          class="asset-wrapper"
-        >
-          <asset
-            v-bind="asset"
-            :is-interactive="false"
-            @add="$emit('selected', asset)"
-          ></asset>
-        </div>
+      <button class="asset-selection__reset" @click="onResetFilters">
+        Reset All Filters
+      </button>
+    </div>
+    <div class="asset-selection__grid">
+      <div
+        v-for="asset in availableAssets"
+        v-show="isAssetVisible(asset.name, asset.type)"
+        :key="asset.name"
+        class="asset-wrapper"
+      >
+        <asset
+          v-bind="asset"
+          :is-interactive="false"
+          @add="$emit('selected', asset)"
+        ></asset>
       </div>
     </div>
-  </div>
+  </details>
 </template>
 
 <script>
@@ -132,48 +121,14 @@ export default {
 .asset-selection {
   border-radius: 4px;
   overflow: hidden;
-  text-align: center;
+  padding-top: 1rem;
 
-  .asset-selection__title {
-    padding: 1rem;
-    position: relative;
-    background: black;
-    text-align: center;
-    border: none;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 16px;
-    border-radius: 4px;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      background-color: #333;
-    }
-
-    &.asset-selection__title--active {
-      width: 100%;
-      &:before {
-        content: ' ';
-        width: 0px;
-        height: 0px;
-        border-top: 16px solid black;
-        border-right: 24px solid transparent;
-        border-bottom: 16px solid transparent;
-        border-left: 24px solid transparent;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -24px;
-      }
-
-      &:hover,
-      &:focus {
-        &:before {
-          border-top-color: #333;
-        }
-      }
-    }
+  .asset-selection__summary {
+    text-align: left;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    background-color: black;
   }
 
   .asset-selection__header {
@@ -199,7 +154,7 @@ export default {
         border-radius: 4px;
         color: #ccc;
         padding: 7px 1rem;
-        background-color: #4f4f4f;
+        background-color: #4a4a4a;
 
         &:hover {
           color: #fff;
