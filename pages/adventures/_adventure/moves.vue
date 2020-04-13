@@ -13,13 +13,13 @@
           :checked="activeTypes.includes(type)"
           :name="type"
           type="checkbox"
-          class="moves_type-checkbox"
+          class="moves__type__checkbox"
           @change="onCheckType($event)"
         />
         <label :for="type">{{ type }}</label>
       </div>
       <base-button class="moves__reset" @click="onResetFilters">
-        Reset All Filters
+        Clear Filters
       </base-button>
     </div>
     <div
@@ -121,25 +121,33 @@ export default {
   padding: 20px;
 
   .moves__header {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 16px;
+    display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    margin-top: -1rem;
 
     .moves__search {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 18px;
-      padding: 5px;
+      margin-right: 1rem;
+      width: 150px;
+      margin-top: 1rem;
+    }
+
+    .moves__reset {
+      margin-top: 1rem;
     }
 
     .moves__type {
       display: flex;
+      width: 110px;
+      margin-right: 1rem;
+      margin-top: 1rem;
       label {
         flex-grow: 1;
-        text-align: left;
+        text-align: center;
         display: block;
         font-family: 'Times New Roman', Times, serif;
-        font-size: 18px;
+        font-size: 14px;
         border: 1px solid transparent;
         border-radius: 50px;
         color: #ccc;
@@ -152,7 +160,7 @@ export default {
         }
       }
 
-      .moves_type-checkbox {
+      .moves__type__checkbox {
         opacity: 0;
         width: 0;
         height: 0;
@@ -168,12 +176,6 @@ export default {
           color: #00c8fa;
         }
       }
-    }
-
-    .moves__reset {
-      text-align: left;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 18px;
     }
   }
 

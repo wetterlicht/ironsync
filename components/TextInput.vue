@@ -26,6 +26,7 @@ export default {
 <style lang="scss" scoped>
 .text-input {
   font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
   padding: 4px;
   border-radius: 4px;
   outline: none;

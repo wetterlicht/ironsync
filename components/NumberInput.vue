@@ -9,6 +9,7 @@ export default {}
 <style lang="scss" scoped>
 input {
   font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
   width: 60px;
   border-radius: 4px;
   outline: none;

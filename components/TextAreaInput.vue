@@ -35,6 +35,7 @@ export default {
   min-height: 10rem;
   flex-grow: 1;
   font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
   padding: 4px;
   outline: none;
   border: 1px solid transparent;

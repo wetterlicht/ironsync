@@ -9,6 +9,7 @@ export default {}
 <style lang="scss" scoped>
 .button {
   font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;

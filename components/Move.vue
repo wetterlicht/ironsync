@@ -29,7 +29,7 @@ export default {
   padding: 10px;
   background-color: #000;
   color: #fff;
-  text-align: center;
+  text-align: left;
   user-select: none;
 
   &:hover {

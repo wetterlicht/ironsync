@@ -178,6 +178,7 @@
           </div>
         </div>
         <asset-selection
+          :id="id"
           :available-assets="availableAssets"
           @selected="addAsset"
         />

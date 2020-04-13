@@ -17,7 +17,7 @@ export default {}
 <style lang="scss" scoped>
 .page-footer {
   bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
   background-color: #000;
   padding: 0.5rem 1rem;

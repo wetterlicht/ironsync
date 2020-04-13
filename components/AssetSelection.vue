@@ -11,23 +11,22 @@
       />
       <div v-for="type in types" :key="type" class="asset-selection__type">
         <input
-          :id="type"
+          :id="`${id}-${type}`"
           :checked="activeTypes.includes(type)"
           :name="type"
           type="checkbox"
-          class="asset-selection_type-checkbox"
+          class="asset-selection__type__checkbox"
           @change="onCheckType($event)"
         />
-        <label :for="type">{{ type }}</label>
+        <label :for="`${id}-${type}`">{{ type }}</label>
       </div>
-      <button class="asset-selection__reset" @click="onResetFilters">
-        Reset All Filters
-      </button>
+      <base-button class="asset-selection__reset" @click="onResetFilters">
+        Clear Filters
+      </base-button>
     </div>
     <div class="asset-selection__grid">
       <div
-        v-for="asset in availableAssets"
-        v-show="isAssetVisible(asset.name, asset.type)"
+        v-for="asset in filteredAssets"
         :key="asset.name"
         class="asset-wrapper"
       >
@@ -42,14 +41,20 @@
 </template>
 
 <script>
+import BaseButton from '~/components/BaseButton.vue'
 import TextInput from '~/components/TextInput.vue'
 import Asset from '~/components/Asset.vue'
 export default {
   components: {
     Asset,
+    BaseButton,
     TextInput
   },
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     availableAssets: {
       type: Array,
       required: true
@@ -70,23 +75,36 @@ export default {
           return set
         }, new Set())
       ).sort()
+    },
+    filteredAssets() {
+      console.log('runFilter')
+      const result = this.availableAssets.filter((asset) => {
+        if (
+          this.searchString &&
+          !asset.name.toLowerCase().startsWith(this.searchString.toLowerCase())
+        ) {
+          return false
+        }
+        if (
+          this.activeTypes.length > 0 &&
+          !this.activeTypes.includes(asset.type)
+        ) {
+          return false
+        }
+        return true
+      })
+      console.log(result.length)
+      return result
+    }
+  },
+  watch: {
+    activeTypes(value) {
+      console.log('ActiveTypes', value)
     }
   },
   methods: {
     toggleOpen() {
       this.isOpen = !this.isOpen
-    },
-    isAssetVisible(name, type) {
-      if (
-        this.searchString &&
-        !name.toLowerCase().startsWith(this.searchString.toLowerCase())
-      ) {
-        return false
-      }
-      if (this.activeTypes.length > 0 && !this.activeTypes.includes(type)) {
-        return false
-      }
-      return true
     },
     onCheckType(event) {
       if (event.target.checked === true) {
@@ -96,6 +114,7 @@ export default {
           (type) => type !== event.target.name
         )
       }
+      console.log(this.activeTypes.length)
     },
     onResetFilters() {
       this.activeTypes = []
@@ -139,19 +158,16 @@ export default {
     align-items: center;
     padding: 2rem 15px;
 
-    .asset-selection__search {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 18px;
-      padding: 5px;
-    }
-
     .asset-selection__type {
+      display: flex;
       label {
+        flex-grow: 1;
+        text-align: center;
         display: block;
         font-family: 'Times New Roman', Times, serif;
-        font-size: 18px;
+        font-size: 16px;
         border: 1px solid transparent;
-        border-radius: 4px;
+        border-radius: 50px;
         color: #ccc;
         padding: 7px 1rem;
         background-color: #4a4a4a;
@@ -162,30 +178,21 @@ export default {
         }
       }
 
-      .asset-selection_type-checkbox {
-        display: none;
+      .asset-selection__type__checkbox {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        margin: 0;
+
+        &:focus + label {
+          background-color: #000;
+          color: #fff;
+        }
 
         &:checked + label {
-          color: #fff;
           background-color: #000;
-          border: 1px solid #00c8faa8;
+          color: #00c8fa;
         }
-      }
-    }
-
-    .asset-selection__reset {
-      text-align: left;
-      cursor: pointer;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 18px;
-      border: 0;
-      outline: none;
-      border-radius: 4px;
-      color: #ccc;
-      background: none;
-
-      &:hover {
-        color: #fff;
       }
     }
   }
