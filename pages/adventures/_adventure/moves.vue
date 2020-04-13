@@ -136,7 +136,7 @@ export default {
       display: flex;
       label {
         flex-grow: 1;
-        text-align: center;
+        text-align: left;
         display: block;
         font-family: 'Times New Roman', Times, serif;
         font-size: 18px;
