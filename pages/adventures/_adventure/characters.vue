@@ -77,6 +77,5 @@ export default {
 .add {
   margin: 10px auto;
   font-size: 18px;
-  padding: 1rem;
 }
 </style>

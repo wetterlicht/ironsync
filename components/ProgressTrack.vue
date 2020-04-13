@@ -4,6 +4,7 @@
       <text-input
         :value="description"
         class="progress-track__description"
+        :is-dark="true"
         @input="$emit('descriptionChange', $event.target.value)"
       />
       <remove-icon class="progress-track__remove" @click="$emit('remove')" />
@@ -134,6 +135,7 @@ export default {
       justify-content: center;
 
       .progress-track__box {
+        padding: 0;
         margin: 5px;
       }
     }

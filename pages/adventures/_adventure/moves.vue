@@ -18,9 +18,9 @@
         />
         <label :for="type">{{ type }}</label>
       </div>
-      <button class="moves__reset" @click="onResetFilters">
+      <base-button class="moves__reset" @click="onResetFilters">
         Reset All Filters
-      </button>
+      </base-button>
     </div>
     <div
       :class="['moves__list', selectedMove && 'moves__list--open']"
@@ -32,7 +32,6 @@
         :key="move.attributes.name"
         :name="move.attributes.name"
         :component="move.vue.component"
-        :is-open="selectedMove === move.attributes.name"
         @selected="onMoveClicked(move.attributes.name, move.attributes.type)"
       ></move>
     </div>
@@ -40,11 +39,13 @@
 </template>
 
 <script>
+import BaseButton from '~/components/BaseButton.vue'
 import TextInput from '~/components/TextInput.vue'
 import Move from '~/components/Move.vue'
 export default {
   layout: 'adventure',
   components: {
+    BaseButton,
     Move,
     TextInput
   },
@@ -132,16 +133,18 @@ export default {
     }
 
     .moves__type {
+      display: flex;
       label {
+        flex-grow: 1;
         text-align: center;
         display: block;
         font-family: 'Times New Roman', Times, serif;
         font-size: 18px;
         border: 1px solid transparent;
-        border-radius: 4px;
+        border-radius: 50px;
         color: #ccc;
         padding: 7px 1rem;
-        background-color: #4f4f4f;
+        background-color: #4a4a4a;
 
         &:hover {
           color: #fff;
@@ -150,30 +153,27 @@ export default {
       }
 
       .moves_type-checkbox {
-        display: none;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        margin: 0;
+
+        &:focus + label {
+          background-color: #000;
+          color: #fff;
+        }
 
         &:checked + label {
-          color: #fff;
           background-color: #000;
-          border: 1px solid #00c8faa8;
+          color: #00c8fa;
         }
       }
     }
 
     .moves__reset {
       text-align: left;
-      cursor: pointer;
       font-family: 'Times New Roman', Times, serif;
       font-size: 18px;
-      border: 0;
-      outline: none;
-      border-radius: 4px;
-      color: #ccc;
-      background: none;
-
-      &:hover {
-        color: #fff;
-      }
     }
   }
 

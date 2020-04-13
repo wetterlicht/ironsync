@@ -17,7 +17,7 @@ export default {}
   border: 0;
   white-space: nowrap;
   margin: 0;
-  padding: 4px 8px;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   background-color: #5f5f5f;
   transition: all 0.1s ease-in-out;

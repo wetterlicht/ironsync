@@ -1,15 +1,15 @@
 <template>
-  <div class="asset">
-    <div class="header" @click.stop="toggleOpen">
+  <details class="asset" :open="startOpen" @click="onLoadBody">
+    <summary class="header">
       <div class="name">
         {{ name }}
       </div>
-      <remove-icon v-if="isInteractive" @click.stop="$emit('remove')" />
+      <remove-icon v-if="isInteractive" @remove="$emit('remove')" />
       <base-button v-if="!isInteractive" class="add" @click.stop="$emit('add')"
         >Add</base-button
       >
-    </div>
-    <div v-if="isOpen" class="body">
+    </summary>
+    <div v-if="loadBody" class="body">
       <div class="type">
         {{ type }}
       </div>
@@ -39,7 +39,7 @@
         @change="onAfterChange"
       ></asset-block>
     </div>
-  </div>
+  </details>
 </template>
 
 <script>
@@ -85,11 +85,11 @@ export default {
     }
   },
   data() {
-    return { isOpen: this.startOpen }
+    return { isOpen: this.startOpen, loadBody: false }
   },
   methods: {
-    toggleOpen() {
-      this.isOpen = !this.isOpen
+    onLoadBody() {
+      this.loadBody = true
     },
     onBeforeChange(before) {
       this.$emit('change', {
@@ -128,31 +128,29 @@ export default {
 .asset {
   width: 100%;
   text-align: left;
-
   border-radius: 4px;
   overflow: hidden;
   background-color: #666;
 
   .header {
-    text-align: center;
-    padding: 1rem;
+    text-align: left;
+    padding: 0.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: black;
 
     .name {
-      text-transform: uppercase;
+      flex-grow: 1;
       font-weight: bold;
+    }
+
+    &:after {
+      background: #00c8fa;
     }
   }
 
   .before {
     padding-top: 1rem;
-  }
-
-  .type {
-    text-transform: uppercase;
   }
 
   .body {
